@@ -1,0 +1,46 @@
+<div id="sign_up">
+   <h5> <%=flash[:welcome] if flash[:welcome] %></h5>
+  <div id="sign_left">
+    <h3> Create New Account </h3>
+  </div>
+  <%= form_for @user, :url => users_path, :html => { :multipart => true } do |f| %>   
+    <h3><%= f.label :first_name, :class=>"title" %></h3>   
+    <%= f.text_field :fname, :placeholder => "first name", :class=>"sign_field" %>
+    <h6><%= flash[:fname] if flash[:fname] %></h6>
+
+    <h3><%= f.label :last_name, :class=>"title" %></h3>   
+    <%= f.text_field :lname, :placeholder => "last name", :class=>"sign_field" %>
+    <h6><%= flash[:lname] if flash[:lname] %></h6>
+
+    <h3><%= f.label :username, :class=>"title" %></h3>   
+    <%= f.text_field :uname, :placeholder => "usernam",:class=>"sign_field" %>
+    <h6><%= flash[:uname] if flash[:uname] %></h6>
+
+    <h3><%= f.label "Password", :class=>"title" %></h3>   
+    <%= f.text_field :password, :placeholder => "password",:class=>"sign_field" %>
+    <h6><%= flash[:password] if flash[:password]%></h6>
+
+    <h3><%= f.label "Password conformation", :class=>"title" %></h3>   
+    <%= f.text_field :password_confirmation, :placeholder => "password confirmation",:class=>"sign_field"%>
+    <h6><%= flash[:password_confirmation] if flash[:password_confirmation] %></h6>
+
+    <h3><%= f.label :email, :class=>"title" %></h3> 
+    <%= f.text_field :email, :placeholder => "email",:class=>"sign_field" %>
+    <h6><%= flash[:email] if flash[:email]%></h6>
+
+    <h3><%= f.label :city_and_state, :class=>"title" %></h3> 
+    <%= f.text_field :location, :placeholder => "city and state",:class=>"sign_field" %> 
+    <h6><%= flash[:location] if flash[:location]%></h6>
+
+    <h3><%= f.label :upload_pictures, :class=>"title" %></h3> 
+    <%= f.file_field :avatar %><br>
+    <h6><%= flash[:avatar] if flash[:avatar]%></h6>
+
+    <div id="change_buttom">
+        <%= f.submit "Reset", :type => "reset", :class=>"bottom" %>
+        <%=f.submit "Sign up", data: {disable_with: "Submitting..."}, :class=>"bottom" %>
+    </div>
+  <% end %>
+      <%=flash[:alert] if flash[:alert]%> 
+</div>
+

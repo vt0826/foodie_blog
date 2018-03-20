@@ -1,0 +1,30 @@
+<div id="post">
+    
+    <div>
+        <h1 id="post_h1">Profile</h1>
+    </div>
+    <div id="profile_info">
+        <ul>
+            <li>Name:  <%= current_user.fname.capitalize%> <%= current_user.lname.capitalize%></li>
+            <li>Username: <%= current_user.uname%></li>
+            <li>Email:  <%= current_user.email%></li>
+            <li>Location: <%= current_user.location%></li>
+            <!--<li> #@follow_id %></li>-->
+        </ul>
+    </div>
+    <div>
+      <h1 id="post_h1">Posts</h1>
+    </div>
+    <div id="old_posts">
+      <% @old_post.reverse.each do |post| %>
+        <div id="post_img">
+          <%= image_tag post.avatar.url(:thumb)%>
+        </div>       
+        <div id="post_body">  
+          <h5><%= post.subject%></h5>
+          <h6><%= post.created_at.to_s.chomp("UTC") %></h6>
+          <p><%= post.body%></p>   
+        </div>
+      <% end %>
+    </div>
+</div>

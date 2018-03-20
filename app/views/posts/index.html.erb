@@ -1,0 +1,57 @@
+<div id="feed_wrapper">
+  <% (0..2).each do |i| %>
+    <% if i%2 == 0 %>
+      <div class="recent_feeds">
+        <div class="feed_image"><%= image_tag @post[i].avatar.url %></div>
+        <div class="feed_body">
+          <h4><%=@post[i].subject%></h4>
+          <h5 class=feed_name><%= @post[i].user.uname %></h5>
+          <h5 class=feed_time><%= @post[i].created_at.to_s.chomp("UTC") %></h5>
+          <p><%= @post[i].body %></p>
+        </div>
+        <% if session[:id] %>
+          <% users1=@post[i].user.followers %>
+          <% if  Post.follow(users1,current_user.id)== true %>
+            <%= form_tag unfollows_path, :method => :delete do %>
+              <%= hidden_field_tag :followee_id, @post[i].user.id %>
+              <%= hidden_field_tag :follower_id, current_user.id %>
+              <%= submit_tag "following", :class => "feed_button" %>
+            <% end %>
+          <% else %>
+              <%= form_for @follow do |f| %>
+                <%= f.hidden_field :followee_id, :value => @post[i].user.id %>
+                <%= f.hidden_field :follower_id, :value => current_user.id %>
+                <%= f.submit "Follow" ,:class => "feed_button" %>
+              <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="recent_feeds_2">
+        <div class="feed_image"><%= image_tag @post[i].avatar.url %></div>
+        <div class="feed_body">
+          <h4><%= @post[i].subject %></h4>
+          <h5 class=feed_name><%= @post[i].user.uname %></h5>
+          <h5 class=feed_time><%= @post[i].created_at.to_s.chomp("UTC") %></h5>
+          <p><%= @post[i].body %></p>
+        </div>
+        <% if session[:id] %>
+          <% users1=@post[i].user.followers %>
+            <% if  Post.follow(users1,current_user.id)== true %>
+              <%= form_tag unfollows_path, :method => :delete do %>
+                <%= hidden_field_tag :followee_id, @post[i].user.id %>
+                <%= hidden_field_tag :follower_id, current_user.id %>
+                <%= submit_tag "following", :class => "feed_button" %>
+              <% end %>
+            <% else %>
+                <%= form_for @follow do |f| %>
+                  <%= f.hidden_field :followee_id, :value => @post[i].user.id %>
+                  <%= f.hidden_field :follower_id, :value => current_user.id %>
+                  <%= f.submit "Follow" ,:class => "feed_button" %>
+                <% end %>
+            <% end %> 
+        <% end %>
+      </div>
+    <% end %>
+  <%end%>
+</div>

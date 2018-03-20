@@ -1,0 +1,294 @@
+$font_type:'Quicksand', sans-serif ;
+
+@mixin dim($width,$height){
+  width: $width;
+  height: $height;
+}
+
+#wrapper{
+  @include dim(1280px, 1000px); 
+}
+
+/************** Header *********////////////
+#logo{
+  margin: 0px;
+  padding: 0px;
+  font-family: $font_type;
+  font-size: 1.7em;
+  text-align: center;
+  font-style: oblique;
+}
+#header{ 
+  @include dim(100%, 45px); 
+	background-color: white;
+  border-bottom: 1px grey solid;
+}
+#left_head{
+  @include dim(20%, 100%); 
+  display: inline-block;
+  float: left;
+}
+#log_in{
+  @include dim(55%, 60%); 
+  display: inline;
+  float: right;
+  font-size: 12px;
+}
+#center_head{
+  @include dim(70%, 100%); 
+  font-family: $font_type;
+  margin: 0%;
+  display: inline-block;
+  float: left;
+
+  h5{
+    @include dim(50%, 50%); 
+    display: block;
+    color: red;
+    float: right;
+    margin: 0;
+  }
+}
+#right_head{
+  @include dim(10%, 100%); 
+  float: right;
+  display: inline-block;
+  
+  ul{
+    margin-left: 0;
+    padding-left: 0;
+  }
+  li{
+    list-style: none;
+    display: inline-block;
+    color: black;
+    padding-right: 10%;
+    float: left;
+  }
+  a{
+    color: black;  
+  }
+  a:hover{
+    color: gray;
+  }
+}
+#sign_link{
+  font-size: 12px;
+}
+#log_in_back{
+  font-family: $font_type;
+  font-size: 14px;
+}
+#log_out{
+  display: inline;
+  float: right;
+  width: 30%;
+  padding-top: 2%;
+}
+#log_out_buttom {
+  margin-left: 5%;
+  height: 100px;
+  font-family: $font_type;
+  font-size: 8px;
+  cursor: pointer;
+}
+
+
+
+///******************follow list ******************////
+#following{
+  @include dim(100%, 30%); 
+}
+#following_images{
+  @include dim(84%, 100%); 
+  padding-left: 50px;
+  background-color: #D6D6D6;
+  overflow: auto;
+
+  img{
+    @include dim(25%, 25%); 
+    border-radius: 50%;
+  }
+}
+.following_images_padding{
+  cursor: pointer;
+	margin: 4px 2px;
+  border-radius: 65px;
+ } 
+.following_images_padding:hover{
+    opacity: .8;
+}
+.field{
+    color: gray;
+}
+
+///////////************CONTENT*******////////
+#content{
+	width: 75%;
+	height: 90%;
+	display: inline-block;
+	float: right;
+}
+
+//********************** drop down menu **********//////////////
+#icon{
+  z-index: 3;
+  cursor: pointer;
+}
+#icon:hover{
+  opacity: .7;
+}
+.menu{
+  @include dim(75%, 10%); 
+  border-bottom: 1px dotted black;
+  font-family: $font_type;
+
+}
+#navbar{
+  @include dim(17%, 0px); 
+  background-color: #F2F2F2;
+  margin-top: 1%;
+  margin-left: 57%;
+  position: fixed;
+  border-radius: 5px;
+  opacity: 0;
+  z-index: 0;
+
+  a{
+    text-decoration:none;
+    color: black;
+  }
+  a:hover{
+    font-size: 1.1em;
+  }
+  li{
+    margin-top: 10%;
+    list-style: none;
+    font-size: 1.2em;
+  }
+}
+#nav_icon{
+  @include dim(100px, 100px); 
+  position: fixed;
+  margin-left: 70%;
+  z-index: 100;
+  opacity: .5;
+}
+
+///////******* side ********//////
+#sidebar{
+  @include dim(25%, 90%); 
+	background-color: #E8E8E8;
+  opacity: .8;
+	display: inline-block;
+	float: left;
+}
+
+//****** profile *///////////
+#profile_picture{
+  @include dim(100%, 20%); 
+}
+
+#pic{
+  @include dim(150px, 150px); 
+	display: block;
+	border: solid black;
+  margin-left: 22%;
+  margin-top: 5%;
+}
+
+#user_info{
+ @include dim(100%, 20%); 
+  opacity: .5;
+}
+#user_info_list{
+	width: 100%;
+	margin-right: auto;
+	text-align: right;
+	line-height: 2;
+  font-family: $font_type;
+  
+  ul{
+	  margin-top: 0;
+	  padding-top: 15;
+  }
+  li{
+	  list-style: none;
+    text-align: left;
+    padding-left: 10%;
+    font-size: 14px;
+  }
+}
+/*
+#username{
+  font-size:20px;
+  font-weight:700;
+  margin-left:6%;
+}
+*/
+
+
+/************* Footer ***************************************/
+footer{
+  @include dim(100%, 6%); 
+	background-color: #bfbfbf;
+	clear: both;
+  opacity: .7;
+  z-index: 5;
+}
+
+#footer_about{
+  @include dim(30%, 50%); 
+	display: inline-block;
+  float: left;
+  
+  ul{
+    margin-top: 1%;
+  }
+  li{
+    padding-top: 50px;
+    list-style: none;
+    display: inline;
+    margin-left: 1%;
+    color: white;
+    font-family: $font_type; 
+    font-weight: 900;
+    font-size: 14px;
+  }
+  a{
+    color: black;
+    text-decoration: none; 
+  }
+  a:hover{
+    color: gray;
+  }
+}
+#footer_p{
+  @include dim(25%, 100%); 
+	display: inline-block;
+  padding: 0;
+  margin: 0;
+	float: right;
+  
+  p{
+    margin: 0px;
+    margin-right: 3%;
+    padding: 0px;
+    font-size: 10px;
+    text-align: right;
+    opacity: 0.7;
+  }
+}
+
+/*********profile***********/
+#profile_info{
+    width: 100%;
+    height: 30%;
+}
+#profile_info li{
+    list-style: none;
+    font-size: 15px;
+    line-height: 50px;
+    text-align: left;
+    padding-left: 40%;
+}

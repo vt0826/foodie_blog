@@ -1,0 +1,26 @@
+<div id="post">
+    <div>
+        <h1 id="post_h1">Posts</h1>
+    </div>
+    <div id="old_posts">
+      <% @old_post.reverse.each do |post| %>
+        <div id="post_img">
+          <%= image_tag post.avatar.url(:thumb)%>
+        </div>       
+        <div id="post_body">  
+          <h5><%= post.subject%></h5>
+          <h6><%= post.created_at.to_s.chomp("UTC") %></h6>
+          <p><%= post.body%></p>   
+        </div>
+      <% end %>
+    </div>
+    <%= form_for @post, :url => posts_path, :html => { :multipart => true } do |f| %> 
+      <%= f.hidden_field :user_id, :value =>current_user.id %>
+      <%= f.text_field :subject, :placeholder => "topic", :id=>"post_form_field" %>
+      <%= f.text_area :body, cols: 80, rows:15, :placeholder=>"please enter posts here", :id=>"post_text" %>
+      <h5><%= f.label :upload_picture %></h5> 
+      <%= f.file_field :avatar, :id=>"posts_upload" %>
+      <%=f.submit "Submit", data: {disable_with: "Submitting..."}, :id=>"post_submit" %>
+    <%end%>
+</div>
+

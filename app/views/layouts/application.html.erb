@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>foodie</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand:400,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="jquery.blockUI.js"></script> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+</head>
+<body>
+  <div id="wrapper"> 
+	  <header id="header">
+      <div id="left_head">
+        <p id="logo">Foodie</p>
+      </div>
+      <div id="center_head">
+        <% if session[:id]%>
+          <%= form_tag log_out_path, :method => :delete, :id => "log_out" do %>
+            <%= label_tag :field, "Welcome back \" #{current_user.uname}\"" ,:id =>"log_in_back" %> 
+            <%= submit_tag "log out" , :id => "log_out_buttom"%>
+            <%end%>
+          <% else %>
+            <h5><%= flash[:alert] if flash[:alert] %></h5> 
+          <%= form_tag log_in_path, :id => "log_in"  do %>
+            <%= label_tag :field, "Username" %>
+            <%= text_field_tag :uname, nil, :placeholder => "username" %>
+            <%= label_tag :field, "Password" %>
+            <%= text_field_tag :password ,nil, :placeholder => "password"  %>
+            <%= submit_tag "log in" %>
+            <%= link_to "Sign Up", new_user_path, :id=>"sign_link" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div id=right_head>
+        <ul>
+          <li><a href="https://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+          <li><a href="https://www.twitter.com"><i class="fa fa-twitter-square fa-lg"></i></a></li>
+          <li><a href="https://www.instagram.com"><i class="fa fa-instagram fa-lg"></i></a></li>
+          <li><a href="https://www.pinterest.com"><i class="fa fa-pinterest-p fa-lg"></i></a></li>
+        </ul>
+      </div>
+    </header>   
+        
+    <div id="sidebar">
+      <% if session[:id] %>    
+        <div id=profile_picture">
+          <%= image_tag current_user.avatar.url, :id=>"pic" %>
+        </div>
+      <% else %>
+        <div id="profile_picture">
+          <img id="pic"src=<%= asset_path "stock_profile.jpg"%>>	
+        </div>
+      <% end %>
+      <div id="user_info">
+        <div id="user_info_list">
+            <% if session[:id] %>
+              <ul>
+                <li>Username : <%= current_user.uname %></li>
+                <li> Name : <%= current_user.fname.capitalize %> <%= current_user.lname.capitalize[0] %>.</li>
+                <li><i class="fa fa-map-marker"></i> Location : <%= current_user.location.upcase %></li>
+              </ul>
+            <% else %>    
+              <ul>
+                <li>Username :</li>
+                <li>  Name :</li>
+                <li><i class="fa fa-map-marker"></i> Location :</li>
+              </ul>
+            <%end%>
+        </div>
+      </div>
+      <div id="following">
+        <div id="following_images">
+          <%if session[:id]%>
+            <% @users=User.find(session[:id]).followees%>
+            <% @users.each do |user| %>
+              <%= link_to image_tag(user.avatar.url, :border => 0, :alt => ""), users_path, :class =>"following_images_padding" %>
+            <% end %>
+          <% else %>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+            <img class="following_images_padding" src=<%= asset_path "stock_profile.jpg" %>>
+          <% end%>
+        </div>
+      </div>
+    </div>
+    
+    <div id="content">     
+      <div id=nav_icon>
+        <i id="icon" class="fa fa-chevron-circle-down fa-2x"></i>
+      </div>
+      <div id="navbar">
+        <% if session[:id] %>
+          <ul>
+            <li><div class="menu"><%= link_to "Profile", user_path(current_user.id) %></div></li>
+            <li><div class="menu"><%= link_to "Feed", posts_path %></div></li>
+            <li><div class="menu"><%= link_to "Account Edit", edit_user_path(current_user.id) %></div></li>
+            <li><div class="menu"><%= link_to "Post", new_post_path %></div></li>
+          </ul>
+        <% else %>
+          <ul>
+            <li><div class="menu"><%= link_to "Profile", new_user_path %></div></li>
+            <li><div class="menu"><%= link_to "Feed", new_user_path %></div></li>
+            <li><div class="menu"><%= link_to "Account Edit", new_user_path %></div></li>
+            <li><div class="menu"><%= link_to "Post", new_user_path %></div></li>
+          </ul>
+        <% end %>
+      </div>
+      <%=yield%>
+    </div>
+    
+    <footer>
+	    <div id="footer_about">
+		    <ul>
+			    <li><a href="#">About</a></li> |
+			    <li><a href="#">FAQ</a></li> |
+			    <li><a href="#">Contact Us</a></li>
+        </ul> 
+        <ul>
+          <li><a href="https://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+          <li><a href="https://www.twitter.com"><i class="fa fa-twitter-square fa-lg"></i></a></li>
+          <li><a href="https://www.instagram.com"><i class="fa fa-instagram fa-lg"></i></a></li>  
+          <li><a href="https://www.pinterest.com"><i class="fa fa-pinterest-p fa-lg"></i></a></li>      
+        </ul>
+      </div>
+      <div id="social list">
+      </div>
+	    <div id="footer_p">
+        <p> Copyright &copy; 2015 Victor Tsay & John Paul Tambini. All rights reserved </p>
+	    </div>
+    </footer>
+  </div> 
+  <script> 
+    $(document).ready(function(){
+      var turn=0
+      $("#icon").click(function(){
+        if (turn==0){
+          $("#navbar").animate({height: '300px', opacity: '.9'}, "slow");
+          $("#navbar").css("z-index", "3");
+            turn=1
+        }else{
+          $("#navbar").animate({height: '0', opacity: '0'}, "fast");
+           $("#navbar").css("z-index", "0");
+            turn=0
+        }
+      });
+    });    
+  </script>
+</body>
+</html>

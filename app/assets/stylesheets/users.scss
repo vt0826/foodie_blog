@@ -1,0 +1,113 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "layout";
+
+#sign_form{
+  width:50%;
+  float:left;
+  display:inline-block;
+}
+#sign_up{
+    width:100%;
+    height:100%;
+    background-color:#FAFAFA;
+    h5{
+      font-family: $font_type;
+      color:red;
+      padding-left:30%;
+    }
+    h6{
+      color:red;
+      margin:0;
+    }
+}
+
+#sign_left{
+  @include dim(25%, 100%); 
+  float:left;
+  display:inline-block;
+
+  h3{
+    margin:0;
+    padding-left:15%;
+  }
+}
+#sign_right{
+  @include dim(25%, 100%); 
+  float:left;
+  display:inline-block;
+}
+.sign_field{
+  @include dim(50%, 3%); 
+  color:gray;
+}
+#sign_up_bottom{
+  display:inline-block;
+  float:right;
+}
+#rest_bottom{
+  display:inline-block;
+  float: right;
+}
+.bottom{
+  height:10%;
+}
+//////**********EDIT **************/////////////
+#edit_form{
+    width:50%;
+    float:left;
+    display:inline-block;
+}
+#edit{
+  @include dim(100%, 100%); 
+  background-color:#FAFAFA;
+  
+  h4{
+    color:red;
+  }
+  h6{
+    color:red;
+  }
+}
+#edit_left{
+  @include dim(25%, 100%); 
+  float:left;
+  display:inline-block;
+  
+  h3{
+    margin-top:0;
+    padding-left:10px;
+  }
+}
+#edit_right{
+  @include dim(25%, 100%); 
+  float:left;
+  display:inline-block;
+}
+.edit_field{
+  @include dim(55%, 5%); 
+  color:gray;
+}
+.edit_field::-webkit-input-placeholder {
+     color: rgb(152,0,0) ;
+   }
+#confirm_bottom{
+    display:inline-block;
+    float:right;
+}
+.bottom{
+    height:10%;
+    float:right;
+    margin:1%;
+}
+#del_acct{
+  background-color: red;
+  font-weight: bold;
+}
+#change_buttom{
+  width:80%;    
+}
+
+
+

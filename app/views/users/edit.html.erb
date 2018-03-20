@@ -1,0 +1,47 @@
+<div id="edit">
+  <div id="edit_left">
+      <h3>Account Info / Edit </h3>
+  </div>
+  <div>
+    <%= form_for @user, :url => user_path(current_user.id), :method => :put, :id => "edit_form", :html => { :multipart => true } do |f| %>
+      <h4><%= flash[:update] if flash[:update] %></h4>
+      <h3><%= f.label :first_name, :class=>"title" %></h3>   
+      <%= f.text_field :fname, :value => current_user.fname, :class=>"edit_field" %>
+      <h6><%= flash[:fname] if flash[:fname] %></h6>
+      
+      <h3><%= f.label :last_name, :class=>"title" %></h3>   
+      <%= f.text_field :lname, :value => current_user.lname, :class=>"edit_field" %>
+      <h6><%= flash[:lname] if flash[:lname] %></h6>
+      
+      <h3><%= f.label :username, :class=>"title" %></h3>   
+      <%= f.text_field :uname, :value => current_user.uname,:class=>"edit_field" %>
+      <h6><%= flash[:uname] if flash[:uname] %></h6>
+      
+      <h3><%= f.label "Password", :class=>"title" %></h3>   
+      <%= f.text_field :password, :placeholder => "re-enter your password",:class=>"edit_field" %>
+      <h6><%= flash[:password] if flash[:password]%></h6>
+         
+      <h3><%= f.label "Password conformation", :class=>"title" %></h3>   
+      <%= f.text_field :password_confirmation, :placeholder => "re-enter password confirmation",:class=>"edit_field"%>
+      <h6><%= flash[:password_confirmation] if flash[:password_confirmation] %></h6>
+      
+      <h3><%= f.label :email, :class=>"title" %></h3> 
+      <%= f.text_field :email, :value => current_user.email,:class=>"edit_field" %>
+      <h6><%= flash[:email] if flash[:email]%></h6>
+      
+      <h3><%= f.label :city_and_state, :class=>"title" %></h3> 
+      <%= f.text_field :location, :value => current_user.location,:class=>"edit_field" %> 
+      <h6><%= flash[:location] if flash[:location]%></h6>
+      
+      <h3><%= f.label :upload_pictures, :class=>"title" %></h3> 
+      <%= f.file_field :avatar %><br>
+      <div id="change_buttom"><%=f.submit "Update Info", data: {disable_with: "updating..."}, :class=>"bottom" %></div>
+    <% end %>
+    <div>
+      <%= form_for @user, :url => user_path(current_user.id), :method => :delete  do |f|  %>
+      <%= f.submit "Delete Account",:class=>"bottom"%>
+    <% end %>
+  </div>
+  <div id="edit_right"> </div>
+</div>
+</div>
